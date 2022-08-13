@@ -107,7 +107,7 @@ jobs:
     - name: Terraform Unit Test
       run: |
         terraform show -json tf.plan  > tf.json
-        checkov -f tf.json
+        sudo checkov -f tf.json
 
 
       # On push to "main", build or change infrastructure according to Terraform configuration files
