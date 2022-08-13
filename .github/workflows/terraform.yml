@@ -105,7 +105,9 @@ jobs:
 
     # Generates an execution plan for Terraform
     - name: Terraform Unit Test
-      run: checkov --directory *.tf
+      run: |
+        sudo ls -l 
+        sudo checkov -f *.tf
 
 
       # On push to "main", build or change infrastructure according to Terraform configuration files
