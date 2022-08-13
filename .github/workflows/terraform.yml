@@ -106,7 +106,6 @@ jobs:
     # Generates an execution plan for Terraform
     - name: Terraform Unit Test
       run: |
-        sudo ls -l 
         sudo checkov -d .
 
 

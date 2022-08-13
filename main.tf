@@ -102,6 +102,7 @@ resource "aws_nat_gateway" "TTA-NGW" {
       "Name" = "TTA NGW"
   }
 }
+
 # Create Private Route Table and Add Private Route
 resource "aws_route_table" "private-route-table" {
   vpc_id       = aws_vpc.TTA-VPC.id
