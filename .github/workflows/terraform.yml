@@ -104,9 +104,9 @@ jobs:
       run: terraform plan -input=false
 
     # Generates an execution plan for Terraform
-    - name: Terraform Unit Test
-      run: |
-        sudo checkov -d .
+    #- name: Terraform Unit Test
+    #  run: |
+     #   sudo checkov -d .
 
 
       # On push to "main", build or change infrastructure according to Terraform configuration files
