@@ -107,7 +107,7 @@ jobs:
     - name: Terraform Unit Test
       run: |
         sudo ls -l 
-        sudo checkov -f *.tf
+        sudo checkov -d .
 
 
       # On push to "main", build or change infrastructure according to Terraform configuration files
