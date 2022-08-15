@@ -92,9 +92,3 @@ variable "AMI" {
 variable "key_pair" {
   description = "Key pair to use for the EC2 Instances and bastion"
 }
-
-variable "bucket_name" {
-  #default = "terraform-state"
-  type = string
-  description = "S3 bucket for terraform state file"
-}
