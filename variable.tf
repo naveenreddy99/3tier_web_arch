@@ -94,7 +94,7 @@ variable "key_pair" {
 }
 
 variable "bucket_name" {
-  default = "terraform-state"
+  #default = "terraform-state"
   type = string
   description = "S3 bucket for terraform state file"
 }
