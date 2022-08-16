@@ -6,13 +6,16 @@
 
 
 The code for the S3 Bucket creation is here 
+
 ###### S3.tf ####
 /*==== S3 Bucket ======*/
+
 resource "aws_s3_bucket" "bucket" {
   bucket = var.s3_bucket_name
 }
 
 /* Block Public access to S3 Bucket */
+
 resource "aws_s3_bucket_public_access_block" "bucket_public_access_block" {
   depends_on = [aws_s3_bucket.bucket]
 
@@ -24,6 +27,7 @@ resource "aws_s3_bucket_public_access_block" "bucket_public_access_block" {
   ignore_public_acls      = true
 }
 
+
 ###### variables.tf ####
 variable "s3_bucket_name" {
   description = "Bucket Name"
@@ -33,7 +37,9 @@ variable "region" {
   description = "Region Name"
 }
 
+
 ###### provider.tf ####
+
 provider "aws" {
   region = var.region
 }
