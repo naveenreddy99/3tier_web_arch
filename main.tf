@@ -14,7 +14,6 @@ resource "aws_internet_gateway" "TTA-IGW" {
   tags = {
     "Name" = "TTA IGW"
   }
-
 }
 
 # Create Public Subnet 1
@@ -165,7 +164,6 @@ resource "aws_security_group" "Internal-sg" {
 
   dynamic "ingress" {
     for_each = local.Internal_ingress_rules
-
     content {
       description = ingress.value.description
       from_port   = ingress.value.port
@@ -220,13 +218,13 @@ resource "aws_security_group_rule" "Bastian_outbound_all" {
   cidr_blocks       = ["0.0.0.0/0"]
 }
 
-
 #Create Bastian Host 
 resource "aws_instance" "TTA-Bastian" {
   ami             = var.AMI
   instance_type   = "t2.micro"
   security_groups = [aws_security_group.Bastian-sg.id]
   subnet_id       = aws_subnet.Public-subnet-1.id
+  key_name        = var.key_pair
   tags = {
     Name = "Bastian Host"
   }
@@ -266,6 +264,7 @@ resource "aws_lb_listener" "TTA-ALB_LISTENER" {
 resource "aws_launch_configuration" "TTA-LC" {
   image_id        = var.AMI
   instance_type   = "t2.micro"
+  key_name        = var.key_pair
   security_groups = [aws_security_group.Internetfacing-sg.id]
   user_data       = <<-EOF
               #!/bin/bash
@@ -326,9 +325,7 @@ resource "aws_cloudwatch_metric_alarm" "TTA-ASG-CWA" {
 
 }
 
-
 ###INTERNAL LB & ASG####
-
 #Create ALB TG
 resource "aws_lb_target_group" "TTA-Internal_ALB-TG" {
   name     = "TTA-Internal-ALB-TG"
@@ -412,7 +409,6 @@ resource "aws_cloudwatch_metric_alarm" "TTA-Internal_ASG-CWA" {
   }
   alarm_description = "This metric monitors ec2 cpu utilization"
   alarm_actions     = [aws_autoscaling_policy.TTA-Internal_ASG-Policy.arn]
-
 }
 
 #Create RDS 
